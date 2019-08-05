@@ -1,8 +1,9 @@
+import { axios } from 'axios';
 export const FETCH_SMURFS_START = 'FETCH_SMURFS_START';
 export const FETCH_SMURFS_SUCCESS = 'FETCH_SMURFS_SUCCESS';
 export const FETCH_SMURFS_FAIL = 'FETCH_SMURFS_FAIL';
 export const ADD_SMURF = 'ADD_SMURF';
-import { axios } from 'axios';
+
 
 /* 
   Action Types Go Here!
@@ -25,6 +26,22 @@ export const getSmurfs = () => {
       }))
   }
 }
+
+
+
+// const newSmurf = () => {
+//   return {
+//     type: "ADD_SMURF",
+//     payload: {
+//       name: '',
+//       age: '',
+//       height: '',
+//       id: '',
+//     }
+//     }
+// }
+
+
 
 /*
   For this project you'll need at least 2 action creators for the main portion,

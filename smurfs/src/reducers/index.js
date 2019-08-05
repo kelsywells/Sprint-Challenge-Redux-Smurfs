@@ -1,7 +1,13 @@
+import {  
+  FETCH_SMURFS_START, 
+  FETCH_SMURFS_SUCCESS, 
+  FETCH_SMURFS_FAIL, 
+  ADD_SMURF 
+} from "../actions";
+
 /*
   Be sure to import in all of the action types from `../actions`
 */
-import { FETCH_SMURFS_SUCCESS, FETCH_SMURFS_START, FETCH_SMURFS_FAIL } from "../actions";
 
 /*
  Your initial/default state for this project could *Although does not have to* look a lot like this
@@ -30,7 +36,7 @@ const initialState =
   Components can then read your store as, `state` and not `state.fooReducer`.
 */
 
-export default rootReducer = (state = initialState, action) => {
+const rootReducer = (state = initialState, action) => {
   console.log("reducer", action);
   switch (action.type) {
     case FETCH_SMURFS_START:
@@ -63,8 +69,15 @@ export default rootReducer = (state = initialState, action) => {
         smurfs: ''
       }
     }}
-
-    function addSmurf() {
+    export const addSmurf = () => {
+      return function (dispatch) {
+        dispatch({
+          type: ADD_SMURF,
+          payload: newSmurf
+        })
+      }
+    }
+    const newSmurf = () => {
       return {
         type: "ADD_SMURF",
         payload: {
@@ -77,4 +90,6 @@ export default rootReducer = (state = initialState, action) => {
     }
 
     let currentState= rootReducer(initialState, addSmurf());
+
+    export default rootReducer;
 
