@@ -10,37 +10,21 @@ export const ADD_SMURF = 'ADD_SMURF';
   Be sure to export each action type so you can pull it into your reducer
 */
 
-export const getSmurfs = () => {
-  return function (dispatch) {
+const getSmurfs = () => dispatch => {
     dispatch({
       type: FETCH_SMURFS_START
-    })
+    });
     axios.get("http://localhost:3333/smurfs")
-      .then(res=> dispatch({
+      Promise.then(({data}) => dispatch({
         type: FETCH_SMURFS_SUCCESS,
-        payload: res.data.url
+        payload: data
       }))
+      
       .catch(err => dispatch({
         type: FETCH_SMURFS_FAIL,
         payload: err.stack
       }))
   }
-}
-
-
-
-// const newSmurf = () => {
-//   return {
-//     type: "ADD_SMURF",
-//     payload: {
-//       name: '',
-//       age: '',
-//       height: '',
-//       id: '',
-//     }
-//     }
-// }
-
 
 
 /*
@@ -53,3 +37,5 @@ export const getSmurfs = () => {
    U - updateSmurf
    D - deleteSmurf
 */
+
+export default getSmurfs;

@@ -48,12 +48,13 @@ const rootReducer = (state = initialState, action) => {
         smurfs: null
       }
     case FETCH_SMURFS_SUCCESS: 
+      (console.log(action.payload));
       return {
         ...state,
         error: null,
         fetchingSmurfs: false,
         addingSmurf: false,
-        smurfs: ''
+        smurfs: [...state.smurfs, ...action.payload]
       }
     case FETCH_SMURFS_FAIL: 
       return {
@@ -89,7 +90,7 @@ const rootReducer = (state = initialState, action) => {
         }
     }
 
-    let currentState= rootReducer(initialState, addSmurf());
+    // let currentState= rootReducer(initialState, addSmurf());
 
     export default rootReducer;
 
