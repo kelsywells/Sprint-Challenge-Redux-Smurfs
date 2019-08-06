@@ -45,7 +45,7 @@ const rootReducer = (state = initialState, action) => {
         error: "",
         fetchingSmurfs: true,
         addingSmurf: false,
-        smurfs: null
+        smurfs: []
       }
     case FETCH_SMURFS_SUCCESS: 
       (console.log(action.payload));
@@ -69,26 +69,11 @@ const rootReducer = (state = initialState, action) => {
         addingSmurf: true,
         smurfs: ''
       }
-    }}
-    export const addSmurf = () => {
-      return function (dispatch) {
-        dispatch({
-          type: ADD_SMURF,
-          payload: newSmurf
-        })
-      }
+      default: return state;
     }
-    const newSmurf = () => {
-      return {
-        type: "ADD_SMURF",
-        payload: {
-          name: '',
-          age: '',
-          height: '',
-          id: '',
-        }
-        }
-    }
+    
+  }
+
 
     // let currentState= rootReducer(initialState, addSmurf());
 

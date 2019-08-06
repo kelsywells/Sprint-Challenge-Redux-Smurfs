@@ -27,7 +27,7 @@ class App extends Component {
     // }     this always gives me an error?
     return (
       <div className="App">
-        <SmurfsList smurfs = {this.props.smurfs} />;
+        <SmurfsList smurfs = {this.props.smurfs} />
 
         <form>
           <input type="text" placeholder="Smurf Name"/>
