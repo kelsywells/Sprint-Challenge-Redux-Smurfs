@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
-import getSmurfs from '../actions';
+import { getSmurfs, addSmurf } from '../actions';
 import SmurfsList from './SmurfsList';
+
 
 
 
@@ -15,10 +16,24 @@ import SmurfsList from './SmurfsList';
 class App extends Component {
   constructor(){
     super();
+    this.state= {
+      name: '',
+      age: '',
+      height: ''
+    }
   }
 
   componentDidMount() {
     this.props.getSmurfs();
+  }
+
+  submitHandler = (e) => {
+    e.preventDefault();
+    this.props.addSmurf(this.state);
+  }
+
+  onChangeHandler = (e) => {
+    this.setState({[e.target.name]: e.target.value})
   }
 
   render() {
@@ -28,17 +43,20 @@ class App extends Component {
     return (
       <div className="App">
         <SmurfsList smurfs = {this.props.smurfs} />
-
-        <form>
-          <input type="text" placeholder="Smurf Name"/>
-          <input type="number" placeholder="Smurf Age" />
-          <input type="number" placeholder="Smurf Height"/>
+    
+        <form onSubmit={this.submitHandler}>
+          <input onChange={this.onChangeHandler} value={this.state.name} name= "name" type="text" placeholder="Smurf Name"/>
+          <input onChange={this.onChangeHandler} value={this.state.age} name= "age" type="number" placeholder="Smurf Age" />
+          <input onChange={this.onChangeHandler} value={this.state.height} name= "height" type="number" placeholder="Smurf Height"/>
           <button type="submit">Add Smurf!</button>
         </form>
       </div>
     );
   }
+
 }
+
+
 
 const mapStateToProps = state => {
   console.log('state', state);
@@ -52,9 +70,5 @@ const mapStateToProps = state => {
 
 export default connect (
   mapStateToProps,
-  {getSmurfs}
-  )
-  (App);
-
-
-
+  {getSmurfs, addSmurf}
+  )(App);
